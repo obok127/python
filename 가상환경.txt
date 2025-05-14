@@ -1,0 +1,31 @@
+가상환경만들기 -> 강화학습 : 게임에 적용되는 머신러닝 알고리즘(파이썬 3.9 이하만)
+동일 컴퓨터에 별도의 실행환경을 만들어서 거기에 별도의 라이브러리를 설치해야 한다.
+동일 컴퓨터의 여러 버전의 파이썬과 라이브러리를 사용할 수 있다.
+프로젝트별로 별도의 환경을 만들 수 있다.
+의존성관리 -> 예를 들어서 머신러닝(scikit-learn) 이 알고리즘은 numpy나 pandas가 동시에 필요하고 서로 버전도 맞아야 한다.
+이런 걸 통틀어서 의존성관리라고 한다. pip(네트워크를 통해서 다운받아 온다.) 
+의존성 : 머신러닝이나 케라스 텐서하려면 넘파이나 판다스가 필요한데 이런 식으로 가져오는 것을 의존성이라고 한다.
+
+conda create --name 가상환경명 python=3.8
+conda create --name myenv1 python = 3.8 myenv1이라는 가상환경을 만들고 파이썬 3.8을 설치한다.
+가상환경을 만드는 방법이 윈도우/리눅스가 다르다.
+
+pip로 유틸을 깔면 파이썬 저장소에서
+파이썬 설치시 wheel도 필요
+강화학습은 파이썬 3.8보다 밑으로 깔아야 한다.
+최근에는 텐서가 콘다에 안 깔리고 가상환경을 만들어야 한다.
+
+conda activate myenv1을 입력하면 
+base가 변한다.
+
+(base) C:\Users\user>python --version
+Python 3.12.3
+
+(base) C:\Users\user>conda activate myenv1
+
+(myenv1) C:\Users\user>python --version
+Python 3.8.20
+
+(myenv1) C:\Users\user>
+
+myenv1폴더 삭제하면 가상환경 삭제됨.
