@@ -1,0 +1,34 @@
+제약조건
+1. primary key - 중복안되고 null값을 갖지 않아야 한다. 이 조건을 만족해야만 primary key를 줄 수 있다.
+    ex. 회원 아이디 - 예전에는 회원아이디를 primary key로 한다. (수정불가)
+    아이디 변경 가능 사이트들은 별도의 일련번호를 부여해서 이 번호를 primary key로 하고 
+    회원아이디는 unique-key라는 제약조건을 준다.
+    unique 제약 조건은 중복은 허용 안하지만 null값은 허용 가능
+    테이블의 primary key는 하나만 줄 수 있다. 여러 개의 필드를 묶어서 하나의 primary key를 지정하는 경우도 있다.
+
+    foreing key(외부키) - 테이블과 테이블의 관계성에 입각해서 상호 제약을 가하고자 할 때
+    테이블을 나누는 구조(정규화 제1, 제2, BNF정규화)
+    실무에서 바라볼 때 1 : N의 관계일 때 테이블을 나눈다.
+    고용인, 부서테이블 - 각 직원마다 부서명을 따로 저장한다. 메모리가 많이 든다.
+                    - 부서명 바꿀 떄마다 직원마다 부서명 바꾸러 다닌다.
+                    (오버헤드-쓸데없는 일), 실수로 한명을 빼고 바꾸면
+                    한분만 홍보부 나머지 -> 마케팅부
+                    일관성이 없다.
+                    테이블을 나누자 -> 메모리 부족 해결, 부서코드
+                    history 테이블을 만든다.
+                    일관성을 유지하기 위해서 foreign key를 설정한다.
+
+emp테이블의 deptno          dept 테이블의 deptno(primary 또는 unique)
+
+emp 테이블에서 foreign key를 dep 테이블에 걸어준다.
+emp 테이블의 deptno필드에는 dept테이블의 deptno필드 내에 있는 값만 넣을 수 있다.(부서번호가 10,20,30,40)
+emp 테이블에 부서번호 50을 넣는 걸 사전에 차단함.
+dept 테이블 입장에선 부서번호 삭제 불가능 - 이미 사용중인 부서번호 삭제 불가
+(foreign key삭제를 안하면 table삭제가 안됨, 왜냐면 각 테이블이 서로를 참조하기 때문)
+
+-- primary key 추가 삭제 - mysql
+-- alter : 수정할 때 사용
+-- primary key 삭제명령어 - mysql만
+alter table 테이블명 drop drop primary key;
+-- primary key 추가명령어 - mysql만
+alter table 테이블명 add constraint 키이름 primary key(필드명);
